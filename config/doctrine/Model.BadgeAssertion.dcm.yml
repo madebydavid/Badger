@@ -1,0 +1,16 @@
+#config/doctrine/Model.BadgeAssertion.dcm.yml
+Model\BadgeAssertion:
+    type: entity
+    table: badge_assertion
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        badge_id:
+            type: integer
+        recipient_id:
+            type: integer
+        issued_on:
+            type: datetime

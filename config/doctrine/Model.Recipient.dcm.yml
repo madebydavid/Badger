@@ -1,0 +1,28 @@
+#config/doctrine/Model.Recipient.dcm.yml
+Model\Recipient:
+    type: entity
+    table: recipient
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+    manyToMany:
+        badges:
+            targetEntity: Model\Badge
+            joinTable:
+                name: badge_assertion
+                joinColumns:
+                    recipient_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    badge_id:
+                        referencedColumnName: id
+                    

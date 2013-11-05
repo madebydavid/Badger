@@ -1,0 +1,26 @@
+{% extends "common/base.twig" %}
+{% block currentPage %}Badges{% endblock %}
+{% block content %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for badge in badges %}
+                    <tr>
+                        <td>{{badge.id}}</td>
+                        <td>{{badge.name}}</td>
+                        <td>{{badge.desc}}</td>
+                        <td><a href="{{ url('badge', {id: badge.id}) }}">Edit</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include "common/pagination.twig" %}
+        <a href="{{ url('badge', {id: 0}) }}" class="btn">Create New Badge</a>
+{% endblock %}

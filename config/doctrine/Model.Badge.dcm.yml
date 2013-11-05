@@ -1,0 +1,34 @@
+#config/doctrine/Model.Badge.dcm.yml
+Model\Badge:
+    type: entity
+    table: badge
+    fields:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+        name:
+            type: string
+            length: 255
+        desc:
+            column: `desc`
+            type: text
+        image_url:
+            type: string
+            length: 255
+            nullable: true
+        criteria:
+            type: text
+    manyToMany:
+        recipients:
+            targetEntity: Model\Recipient
+            joinTable:
+                name: badge_assertion
+                joinColumns:
+                    badge_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    recipient_id:
+                        referencedColumnName: id
+            
