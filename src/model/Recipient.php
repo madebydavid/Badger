@@ -38,7 +38,15 @@ class Recipient
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Model\Badge", mappedBy="badge_assertion")
+     * @ORM\ManyToMany(targetEntity="Model\Badge")
+     * @ORM\JoinTable(name="badge_assertion",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="recipient_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="badge_id", referencedColumnName="id")
+     *   }
+     * )
      */
     private $badges;
 

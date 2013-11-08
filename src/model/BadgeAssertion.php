@@ -45,14 +45,20 @@ class BadgeAssertion
     /**
      * @var \Model\Badge
      *
-     * @ORM\OneToOne(targetEntity="Model\Badge", mappedBy="badge")
+     * @ORM\OneToOne(targetEntity="Model\Badge")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="badge_id", referencedColumnName="id", unique=true)
+     * })
      */
     private $badge;
 
     /**
      * @var \Model\Recipient
      *
-     * @ORM\OneToOne(targetEntity="Model\Recipient", mappedBy="recipient")
+     * @ORM\OneToOne(targetEntity="Model\Recipient")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="recipient_id", referencedColumnName="id", unique=true)
+     * })
      */
     private $recipient;
 

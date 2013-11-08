@@ -16,15 +16,13 @@ Model\BadgeAssertion:
             type: datetime
             columnDefinition: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     oneToOne:
-        badge:
+        badge: 
             targetEntity: Model\Badge
-            mappedBy: badge
             joinColumn:
                 name: badge_id
                 referencedColumnName: id
         recipient:
             targetEntity: Model\Recipient
-            mappedBy: recipient
             joinColumn:
                 name: recipient_id
                 referencedColumnName: id
