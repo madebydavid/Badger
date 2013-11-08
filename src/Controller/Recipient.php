@@ -49,7 +49,7 @@ namespace Controller {
 			
 		}
 		
-		private function getRecipient(Applciation $app, $id) {
+		private function getRecipient(Application $app, $id) {
 			if (0 == $id) {
 				return new \Model\Recipient();
 			} 
