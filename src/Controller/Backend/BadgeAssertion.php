@@ -20,7 +20,7 @@ namespace Controller\Backend {
 			$badgeAssertion = $this->getBadgeAssertion($app, $id);
 		
 			return $app->json(array(
-					'uid' => $badgeAssertion->getId(),
+					'uid' => md5($badgeAssertion->getId()),
 					'recipient' => array(
 						'type' => 'email',
 						'hashed' => false,
