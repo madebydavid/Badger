@@ -20,10 +20,9 @@ Model\Badge:
             nullable: true
         criteria:
             type: text
-    ManyToMany:
+    manyToMany:
         recipients:
             targetEntity: Model\Recipient
-            mappedBy: badge_assertion
             joinTable:
                 name: badge_assertion
                 joinColumns:
