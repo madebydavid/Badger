@@ -5,7 +5,6 @@ namespace Controller {
 	use Silex\Application;
 	use Silex\ControllerProviderInterface;
 	use Symfony\Component\HttpFoundation\Response;
-	use Symfony\Component\Validator\Constraints as Assert;
 
 	class Award implements ControllerProviderInterface {
 		

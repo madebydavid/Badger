@@ -19,7 +19,7 @@ namespace Controller {
 		public function index(Application $app, $id) {
 
 			$badge = $this->getBadge($app, $id);
-			$form = $app['form.factory']->create(new \Badger\Form\BadgeType(), $badge);
+			$form = $this->getForm($app, $badge);
 			
 			return $app['twig']->render('badge.twig', array(
 					'form' => $form->createView(),
@@ -31,7 +31,7 @@ namespace Controller {
 		public function save(Application $app, $id) {
 			
 			$badge = $this->getBadge($app, $id);
-			$form = $app['form.factory']->create(new \Badger\Form\BadgeType(), $badge);
+			$form = $this->getForm($app, $badge);
 			
 			$form->bind($app['request']);
 			
@@ -54,24 +54,25 @@ namespace Controller {
 				
 				return $app->redirect($app['url_generator']->generate('badges'));
 				
-			} else {
-				return $app['twig']->render('badge.twig', array(
-						'form' => $form->createView(),
-						'badge' => $badge
-				));
-			}
+			} 
+			
+			return $app['twig']->render('badge.twig', array(
+					'form' => $form->createView(),
+					'badge' => $badge
+			));
 			
 		}
 		
 		private function getBadge(Application $app, $id) {
 			if (0 == $id) {
 				return new \Model\Badge();
-			} else {
-				return $app['orm.em']->getRepository('Model\Badge')->findOneById($id);
-			}
+			} 
+			return $app['orm.em']->getRepository('Model\Badge')->findOneById($id);
 		}
 		
-
+		private function getForm(Application $app, \Model\Badge $badge) {
+			return $app['form.factory']->create(new \Badger\Form\BadgeType(), $badge);
+		}
 		
 	}
 }

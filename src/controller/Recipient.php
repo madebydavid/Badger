@@ -18,8 +18,8 @@ namespace Controller {
 
 		public function index(Application $app, $id) {
 
-			$badge = $app['orm.em']->getRepository('Model\Recipient')->findOneById($id);
-			$form = $app['form.factory']->create(new \Badger\Form\RecipientType(), $badge);
+			$recipient = $this->getRecipient($app, $id);
+			$form = $this->getForm($app, $recipient);
 			
 			return $app['twig']->render('recipient.twig', array(
 					'form' => $form->createView()
@@ -29,13 +29,9 @@ namespace Controller {
 		
 		public function save(Application $app, $id) {
 			
-			if (0 == $id) {
-				$recipient = new \Model\Recipient();
-			} else {
-				$recipient = $app['orm.em']->getRepository('Model\Recipient')->findOneById($id);
-			}
+			$recipient = $this->getRecipient($app, $id);
+			$form = $this->getForm($app, $recipient);
 			
-			$form = $app['form.factory']->create(new \Badger\Form\RecipientType(), $recipient);
 			$form->bind($app['request']);
 			
 			if ($form->isValid()) {
@@ -45,12 +41,23 @@ namespace Controller {
 				
 				return $app->redirect($app['url_generator']->generate('recipients'));
 				
-			} else {
-				return $app['twig']->render('recipient.twig', array(
-						'form' => $form->createView()
-				));
-			}
+			} 
 			
+			return $app['twig']->render('recipient.twig', array(
+					'form' => $form->createView()
+			));
+			
+		}
+		
+		private function getRecipient(Applciation $app, $id) {
+			if (0 == $id) {
+				return new \Model\Recipient();
+			} 
+			return $app['orm.em']->getRepository('Model\Recipient')->findOneById($id);
+		}
+		
+		private function getForm(Application $app, \Model\Recipient $recipient) {
+			return $app['form.factory']->create(new \Badger\Form\RecipientType(), $recipient);
 		}
 		
 	}
