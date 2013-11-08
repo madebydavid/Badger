@@ -34,6 +34,7 @@ namespace Controller\Backend {
 					)
 			));
 			
+			
 		}
 				
 		private function getBadgeAssertion(Application $app, $id) {
