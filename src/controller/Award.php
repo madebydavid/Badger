@@ -37,9 +37,10 @@ namespace Controller {
 				
 				foreach ($awards as $award) {
 					
-					$award['recipient']->addBadge($award['badge']);
-					
-					$app['orm.em']->persist($award['recipient']);
+					$assertion = new \Model\BadgeAssertion();
+					$assertion->setRecipient($award['recipient']);
+					$assertion->setBadge($award['badge']);
+					$app['orm.em']->persist($assertion);
 					
 				}
 				

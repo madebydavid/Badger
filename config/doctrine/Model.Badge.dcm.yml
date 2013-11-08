@@ -20,15 +20,7 @@ Model\Badge:
             nullable: true
         criteria:
             type: text
-    manyToMany:
-        recipients:
-            targetEntity: Model\Recipient
-            joinTable:
-                name: badge_assertion
-                joinColumns:
-                    badge_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    recipient_id:
-                        referencedColumnName: id
-            
+    oneToMany:
+        badge_assertion:
+            targetEntity: Model\BadgeAssertion
+            mappedBy: badge_assertion

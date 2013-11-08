@@ -38,24 +38,16 @@ class Recipient
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Model\Badge")
-     * @ORM\JoinTable(name="badge_assertion",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="recipient_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="badge_id", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\OneToMany(targetEntity="Model\BadgeAssertion", mappedBy="badge_assertion")
      */
-    private $badges;
+    private $badge_assertion;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->badges = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->badge_assertion = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -115,35 +107,35 @@ class Recipient
     }
 
     /**
-     * Add badges
+     * Add badge_assertion
      *
-     * @param \Model\Badge $badges
+     * @param \Model\BadgeAssertion $badgeAssertion
      * @return Recipient
      */
-    public function addBadge(\Model\Badge $badges)
+    public function addBadgeAssertion(\Model\BadgeAssertion $badgeAssertion)
     {
-        $this->badges[] = $badges;
+        $this->badge_assertion[] = $badgeAssertion;
     
         return $this;
     }
 
     /**
-     * Remove badges
+     * Remove badge_assertion
      *
-     * @param \Model\Badge $badges
+     * @param \Model\BadgeAssertion $badgeAssertion
      */
-    public function removeBadge(\Model\Badge $badges)
+    public function removeBadgeAssertion(\Model\BadgeAssertion $badgeAssertion)
     {
-        $this->badges->removeElement($badges);
+        $this->badge_assertion->removeElement($badgeAssertion);
     }
 
     /**
-     * Get badges
+     * Get badge_assertion
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getBadges()
+    public function getBadgeAssertion()
     {
-        return $this->badges;
+        return $this->badge_assertion;
     }
 }

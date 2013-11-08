@@ -52,24 +52,16 @@ class Badge
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Model\Recipient")
-     * @ORM\JoinTable(name="badge_assertion",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="badge_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="recipient_id", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\OneToMany(targetEntity="Model\BadgeAssertion", mappedBy="badge_assertion")
      */
-    private $recipients;
+    private $badge_assertion;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->recipients = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->badge_assertion = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -175,35 +167,35 @@ class Badge
     }
 
     /**
-     * Add recipients
+     * Add badge_assertion
      *
-     * @param \Model\Recipient $recipients
+     * @param \Model\BadgeAssertion $badgeAssertion
      * @return Badge
      */
-    public function addRecipient(\Model\Recipient $recipients)
+    public function addBadgeAssertion(\Model\BadgeAssertion $badgeAssertion)
     {
-        $this->recipients[] = $recipients;
+        $this->badge_assertion[] = $badgeAssertion;
     
         return $this;
     }
 
     /**
-     * Remove recipients
+     * Remove badge_assertion
      *
-     * @param \Model\Recipient $recipients
+     * @param \Model\BadgeAssertion $badgeAssertion
      */
-    public function removeRecipient(\Model\Recipient $recipients)
+    public function removeBadgeAssertion(\Model\BadgeAssertion $badgeAssertion)
     {
-        $this->recipients->removeElement($recipients);
+        $this->badge_assertion->removeElement($badgeAssertion);
     }
 
     /**
-     * Get recipients
+     * Get badge_assertion
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getRecipients()
+    public function getBadgeAssertion()
     {
-        return $this->recipients;
+        return $this->badge_assertion;
     }
 }

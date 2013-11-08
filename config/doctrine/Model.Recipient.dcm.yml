@@ -14,14 +14,7 @@ Model\Recipient:
         email:
             type: string
             length: 255
-    manyToMany:
-        badges:
-            targetEntity: Model\Badge
-            joinTable:
-                name: badge_assertion
-                joinColumns:
-                    recipient_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    badge_id:
-                        referencedColumnName: id
+    oneToMany:
+        badge_assertion:
+            targetEntity: Model\BadgeAssertion
+            mappedBy: badge_assertion
