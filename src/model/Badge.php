@@ -49,29 +49,7 @@ class Badge
      */
     private $criteria;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Model\Recipient")
-     * @ORM\JoinTable(name="badge_assertion",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="badge_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="recipient_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $recipients;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->recipients = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
     /**
      * Get id
      *
@@ -172,38 +150,5 @@ class Badge
     public function getCriteria()
     {
         return $this->criteria;
-    }
-
-    /**
-     * Add recipients
-     *
-     * @param \Model\Recipient $recipients
-     * @return Badge
-     */
-    public function addRecipient(\Model\Recipient $recipients)
-    {
-        $this->recipients[] = $recipients;
-    
-        return $this;
-    }
-
-    /**
-     * Remove recipients
-     *
-     * @param \Model\Recipient $recipients
-     */
-    public function removeRecipient(\Model\Recipient $recipients)
-    {
-        $this->recipients->removeElement($recipients);
-    }
-
-    /**
-     * Get recipients
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRecipients()
-    {
-        return $this->recipients;
     }
 }

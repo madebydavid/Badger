@@ -14,3 +14,17 @@ Model\BadgeAssertion:
             type: integer
         issued_on:
             type: datetime
+            columnDefinition: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    oneToOne:
+        badge:
+            targetEntity: Model\Badge
+            mappedBy: badge
+            joinColumn:
+                name: badge_id
+                referencedColumnName: id
+        recipient:
+            targetEntity: Model\Recipient
+            mappedBy: recipient
+            joinColumn:
+                name: recipient_id
+                referencedColumnName: id

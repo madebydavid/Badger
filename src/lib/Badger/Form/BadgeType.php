@@ -21,6 +21,7 @@ namespace Badger\Form {
 			))
 			->add('image', 'file', array(
 					'mapped' => false,
+					'required' => false,
 					'constraints' => new Assert\Image(array('mimeTypes' => 'image/png', 'allowLandscape' => false, 'allowPortrait' => false))
 			));
 			

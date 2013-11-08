@@ -1,2 +1,10 @@
 .prettyFile > input { display: none !important; }
 .prettyFile input.input-medium { width: 135px; }
+
+
+
+#Badger_Form_AwardsType_submit { clear: both; float: right; }
+
+.award_form_element { margin-right: 20px; }
+
+.award_form_element label { margin-right: 10px; }

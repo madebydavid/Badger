@@ -18,7 +18,7 @@ namespace Controller {
 
 		public function index(Application $app, $id) {
 
-			$badge = $app['orm.em']->getRepository('Model\Badge')->findOneById($id);
+			$badge = $this->getBadge($app, $id);
 			$form = $app['form.factory']->create(new \Badger\Form\BadgeType(), $badge);
 			
 			return $app['twig']->render('badge.twig', array(
@@ -30,13 +30,9 @@ namespace Controller {
 		
 		public function save(Application $app, $id) {
 			
-			if (0 == $id) {
-				$badge = new \Model\Badge();
-			} else {
-				$badge = $app['orm.em']->getRepository('Model\Badge')->findOneById($id);
-			}
-			
+			$badge = $this->getBadge($app, $id);
 			$form = $app['form.factory']->create(new \Badger\Form\BadgeType(), $badge);
+			
 			$form->bind($app['request']);
 			
 			if ($form->isValid()) {
@@ -65,6 +61,14 @@ namespace Controller {
 				));
 			}
 			
+		}
+		
+		private function getBadge(Application $app, $id) {
+			if (0 == $id) {
+				return new \Model\Badge();
+			} else {
+				return $app['orm.em']->getRepository('Model\Badge')->findOneById($id);
+			}
 		}
 		
 

@@ -4,7 +4,14 @@
 
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\ValidatorServiceProvider());
+
 $app->register(new Silex\Provider\FormServiceProvider());
+$app->register(new Dominikzogg\Silex\Provider\DoctrineOrmManagerRegistryProvider());
+$app['form.extensions'] = $app->share($app->extend('form.extensions', function ($extensions) use ($app) {
+	$extensions[] = new Symfony\Bridge\Doctrine\Form\DoctrineOrmExtension($app['doctrine']);
+	return $extensions;
+}));
+
 $app->register(new Silex\Provider\TranslationServiceProvider(), array(
 		'translator.messages' => array(),
 ));
@@ -21,8 +28,6 @@ if ($app['debug'] && isset($app['cache.path'])) {
 	));
 	$app->mount('/_profiler', $p); */
 }
-
-
 
 $app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider, array(
 	"orm.em.options" => array(

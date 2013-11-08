@@ -38,9 +38,23 @@ class BadgeAssertion
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="issued_on", type="datetime")
+     * @ORM\Column(name="issued_on", type="datetime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
      */
     private $issued_on;
+
+    /**
+     * @var \Model\Badge
+     *
+     * @ORM\OneToOne(targetEntity="Model\Badge", mappedBy="badge")
+     */
+    private $badge;
+
+    /**
+     * @var \Model\Recipient
+     *
+     * @ORM\OneToOne(targetEntity="Model\Recipient", mappedBy="recipient")
+     */
+    private $recipient;
 
 
     /**
@@ -120,5 +134,51 @@ class BadgeAssertion
     public function getIssuedOn()
     {
         return $this->issued_on;
+    }
+
+    /**
+     * Set badge
+     *
+     * @param \Model\Badge $badge
+     * @return BadgeAssertion
+     */
+    public function setBadge(\Model\Badge $badge = null)
+    {
+        $this->badge = $badge;
+    
+        return $this;
+    }
+
+    /**
+     * Get badge
+     *
+     * @return \Model\Badge 
+     */
+    public function getBadge()
+    {
+        return $this->badge;
+    }
+
+    /**
+     * Set recipient
+     *
+     * @param \Model\Recipient $recipient
+     * @return BadgeAssertion
+     */
+    public function setRecipient(\Model\Recipient $recipient = null)
+    {
+        $this->recipient = $recipient;
+    
+        return $this;
+    }
+
+    /**
+     * Get recipient
+     *
+     * @return \Model\Recipient 
+     */
+    public function getRecipient()
+    {
+        return $this->recipient;
     }
 }

@@ -1,0 +1,5 @@
+{% block form_row %}
+{% spaceless %}
+    <span class="award_form_element">{{ form_errors(form) }}{{ form_label(form) }}{{ form_widget(form) }}</span>
+{% endspaceless %}
+{% endblock form_row %}

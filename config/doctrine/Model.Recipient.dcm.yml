@@ -25,4 +25,3 @@ Model\Recipient:
                 inverseJoinColumns:
                     badge_id:
                         referencedColumnName: id
-                    
