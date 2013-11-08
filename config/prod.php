@@ -6,7 +6,7 @@ $app['cache.path'] = __DIR__ . '/../cache';
 
 $app['config'] = array(
 	'js_options' => array(
-		'foo' => 'bar' 
+		
 	),
 	'db.options' => array(
 		'driver'	=> 'pdo_mysql',
@@ -15,5 +15,6 @@ $app['config'] = array(
 		'password'	=> ''
 	),
 	'upload.dir' => __DIR__ . '/../web/uploads',
-	'upload.path' => 'uploads'
+	'upload.path' => 'uploads',
+	'badges.issuer.name' => 'W2C3'
 );
