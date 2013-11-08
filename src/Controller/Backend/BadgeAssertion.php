@@ -30,7 +30,7 @@ namespace Controller\Backend {
 					'badge' => $app['url_generator']->generate('backend-badge', array('id' => $badgeAssertion->getBadge()->getId()), UrlGenerator::ABSOLUTE_URL),
 					'verify' => array(
 						'type' => 'hosted',
-						'url' => $app['url_generator']->generate('backend-issuer', array(), UrlGenerator::ABSOLUTE_URL)
+						'url' => $app['url_generator']->generate('backend-badgeassertion', array('id' => $id), UrlGenerator::ABSOLUTE_URL)
 					)
 			));
 			
