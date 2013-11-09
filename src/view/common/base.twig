@@ -5,6 +5,7 @@
             {% include "common/config.twig" %}
             <script src="/js/jquery/jquery.js"></script>
             <script src="/bootstrap/js/bootstrap.js"></script>
+            {% block scripts %}{% endblock scripts %}
             <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
             <link href="/css/badger.css" rel="stylesheet" media="screen">
             <title>{% block currentPage %}{% endblock %}</title>

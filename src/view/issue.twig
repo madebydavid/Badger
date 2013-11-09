@@ -1,0 +1,15 @@
+{% extends "common/base.twig" %}
+{% block scripts %}<script src="https://backpack.openbadges.org/issuer.js"></script>{% endblock scripts %}
+{% block currentPage %}Issue{% endblock %}
+{% block content %}
+    
+    <script>
+        jQuery(document).ready(function() {
+            OpenBadges.issue(['{{ assertionUrl }}'], function(errors, successes) {
+                console.log(errors);
+                console.log(successes);
+            });
+        });
+    </script>
+
+{% endblock %}
