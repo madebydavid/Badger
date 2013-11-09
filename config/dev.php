@@ -13,16 +13,16 @@ $app->register(new MonologServiceProvider(), array(
 ));
 
 $app['config'] = array(
-	'js_options' => array(
-		'foo' => 'bar' 
-	),
-	'db.options' => array(
-		'driver'	=> 'pdo_mysql',
-		'dbname'	=> 'Badger',
-		'user'		=> 'root',
-		'password'	=> ''
-	),
-	'upload.dir' => __DIR__ . '/../web/uploads',
-	'upload.path' => 'uploads',
-	'badges.issuer.name' => 'W2C3'
+    'js_options' => array(
+        'foo' => 'bar' 
+    ),
+    'db.options' => array(
+        'driver'    => 'pdo_mysql',
+        'dbname'    => 'Badger',
+        'user'        => 'root',
+        'password'    => ''
+    ),
+    'upload.dir' => __DIR__ . '/../web/uploads',
+    'upload.path' => 'uploads',
+    'badges.issuer.name' => 'W2C3'
 );

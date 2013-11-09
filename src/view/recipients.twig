@@ -1,26 +1,26 @@
 {% extends "common/base.twig" %}
 {% block currentPage %}Recipients{% endblock %}
 {% block content %}
-		<table class="table">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for recipient in recipients %}
-					<tr>
-						<td>{{recipient.id}}</td>
-						<td>{{recipient.name}}</td>
-						<td>{{recipient.email}}</td>
-						<td><a href="{{ url('recipient', {id: recipient.id}) }}">Edit</a></td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		{% include "common/pagination.twig" %}
-		<a href="{{ url('recipient', {id: 0}) }}" class="btn">Create New Recipient</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for recipient in recipients %}
+                    <tr>
+                        <td>{{recipient.id}}</td>
+                        <td>{{recipient.name}}</td>
+                        <td>{{recipient.email}}</td>
+                        <td><a href="{{ url('recipient', {id: recipient.id}) }}">Edit</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% include "common/pagination.twig" %}
+        <a href="{{ url('recipient', {id: 0}) }}" class="btn">Create New Recipient</a>
 {% endblock %}
