@@ -10,8 +10,12 @@ namespace Controller\Backend {
     class BadgeAssertion implements ControllerProviderInterface {
         
         public function connect(Application $app) {
+            
             $controller = $app['controllers_factory'];
-            $controller->get("/{id}/", array($this, 'index'))->assert('id', '\d+')->bind('backend-badgeassertion');
+            
+            $controller->get("/{id}/", array($this, 'index'))
+                ->assert('id', '\d+')->bind('backend-badgeassertion');
+            
             return $controller;
         }
 
@@ -27,10 +31,18 @@ namespace Controller\Backend {
                         'identity' => $badgeAssertion->getRecipient()->getEmail()
                     ),
                     'issuedOn' => $badgeAssertion->getIssuedOn()->format(\DateTime::ISO8601),
-                    'badge' => $app['url_generator']->generate('backend-badge', array('id' => $badgeAssertion->getBadge()->getId()), UrlGenerator::ABSOLUTE_URL),
+                    'badge' => $app['url_generator']->generate(
+                        'backend-badge', 
+                        array('id' => $badgeAssertion->getBadge()->getId()), 
+                        UrlGenerator::ABSOLUTE_URL
+                    ),
                     'verify' => array(
                         'type' => 'hosted',
-                        'url' => $app['url_generator']->generate('backend-badgeassertion', array('id' => $id), UrlGenerator::ABSOLUTE_URL)
+                        'url' => $app['url_generator']->generate(
+                            'backend-badgeassertion', 
+                            array('id' => $id),
+                            UrlGenerator::ABSOLUTE_URL
+                        )
                     )
             ));
             
@@ -38,11 +50,16 @@ namespace Controller\Backend {
         }
                 
         private function getBadgeAssertion(Application $app, $id) {
-            $badgeAssertion = $app['orm.em']->getRepository('Model\BadgeAssertion')->findOneById($id);
+            
+            $badgeAssertion = $app['orm.em']
+                ->getRepository('Model\BadgeAssertion')->findOneById($id);
+            
             if (is_null($badgeAssertion)) {
                 $app->abort(404, "BadgeAssertion $id does not exist.");
             }
+            
             return $badgeAssertion;
+            
         }
         
     }

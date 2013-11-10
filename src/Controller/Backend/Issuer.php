@@ -9,16 +9,21 @@ namespace Controller\Backend {
     class Issuer implements ControllerProviderInterface {
         
         public function connect(Application $app) {
+            
             $controller = $app['controllers_factory'];
+            
             $controller->get("/", array($this, 'index'))->bind('backend-issuer');
+            
             return $controller;
         }
 
         public function index(Application $app) {
+            
             return $app->json(array(
                     'name' => $app['config']['badges.issuer.name'],
                     'url' => $app['request']->getScheme().'://'.$app['request']->getHttpHost().$app['request']->getBasePath().'/'
             ));
+            
             
         }
         
