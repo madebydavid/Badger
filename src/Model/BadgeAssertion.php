@@ -22,20 +22,6 @@ class BadgeAssertion
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="badge_id", type="integer")
-     */
-    private $badge_id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="recipient_id", type="integer")
-     */
-    private $recipient_id;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="issued_on", type="datetime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -45,9 +31,9 @@ class BadgeAssertion
     /**
      * @var \Model\Badge
      *
-     * @ORM\OneToOne(targetEntity="Model\Badge")
+     * @ORM\ManyToOne(targetEntity="Model\Badge", inversedBy="badge_assertion")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="badge_id", referencedColumnName="id", unique=true)
+     *   @ORM\JoinColumn(name="badge_id", referencedColumnName="id")
      * })
      */
     private $badge;
@@ -55,12 +41,22 @@ class BadgeAssertion
     /**
      * @var \Model\Recipient
      *
-     * @ORM\OneToOne(targetEntity="Model\Recipient")
+     * @ORM\ManyToOne(targetEntity="Model\Recipient", inversedBy="badge_assertion")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="recipient_id", referencedColumnName="id", unique=true)
+     *   @ORM\JoinColumn(name="recipient_id", referencedColumnName="id")
      * })
      */
     private $recipient;
+
+    /**
+     * @var \Model\User
+     *
+     * @ORM\ManyToOne(targetEntity="Model\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="issued_by", referencedColumnName="id")
+     * })
+     */
+    private $issued_by;
 
 
     /**
@@ -71,52 +67,6 @@ class BadgeAssertion
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set badge_id
-     *
-     * @param integer $badgeId
-     * @return BadgeAssertion
-     */
-    public function setBadgeId($badgeId)
-    {
-        $this->badge_id = $badgeId;
-    
-        return $this;
-    }
-
-    /**
-     * Get badge_id
-     *
-     * @return integer 
-     */
-    public function getBadgeId()
-    {
-        return $this->badge_id;
-    }
-
-    /**
-     * Set recipient_id
-     *
-     * @param integer $recipientId
-     * @return BadgeAssertion
-     */
-    public function setRecipientId($recipientId)
-    {
-        $this->recipient_id = $recipientId;
-    
-        return $this;
-    }
-
-    /**
-     * Get recipient_id
-     *
-     * @return integer 
-     */
-    public function getRecipientId()
-    {
-        return $this->recipient_id;
     }
 
     /**
@@ -186,5 +136,28 @@ class BadgeAssertion
     public function getRecipient()
     {
         return $this->recipient;
+    }
+
+    /**
+     * Set issued_by
+     *
+     * @param \Model\User $issuedBy
+     * @return BadgeAssertion
+     */
+    public function setIssuedBy(\Model\User $issuedBy = null)
+    {
+        $this->issued_by = $issuedBy;
+    
+        return $this;
+    }
+
+    /**
+     * Get issued_by
+     *
+     * @return \Model\User 
+     */
+    public function getIssuedBy()
+    {
+        return $this->issued_by;
     }
 }

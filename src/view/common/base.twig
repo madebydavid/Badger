@@ -20,7 +20,11 @@
                         <li{% if 'Badges' == block('currentPage') %} class="active"{% endif %}><a href="{{ url('badges') }}">Badges</a></li>
                         <li{% if 'Recipients' == block('currentPage') %} class="active"{% endif %}><a href="{{ url('recipients') }}">Recipients</a></li>
                         <li{% if 'Award' == block('currentPage') %} class="active"{% endif %}><a href="{{ url('award') }}">Award</a></li>
+                        <li{% if 'Users' == block('currentPage') %} class="active"{% endif %}><a href="{{ url('users') }}">Users</a></li>
+                        
                     </ul>
+                    {% block logout %}{% endblock %}
+                    
                 </div>
             </div>
         {% endblock %}

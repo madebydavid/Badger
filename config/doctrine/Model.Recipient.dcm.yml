@@ -14,7 +14,16 @@ Model\Recipient:
         email:
             type: string
             length: 255
+        created:
+            type: datetime
+            columnDefinition: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     oneToMany:
         badge_assertion:
             targetEntity: Model\BadgeAssertion
-            mappedBy: badge_assertion
+            mappedBy: recipient
+    manyToOne:
+        created_by:
+            targetEntity: Model\User
+            joinColumn:
+                name: created_by
+                referencedColumnName: id

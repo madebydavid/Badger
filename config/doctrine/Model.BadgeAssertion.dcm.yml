@@ -8,21 +8,24 @@ Model\BadgeAssertion:
             id: true
             generator:
                 strategy: AUTO
-        badge_id:
-            type: integer
-        recipient_id:
-            type: integer
         issued_on:
             type: datetime
             columnDefinition: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    oneToOne:
+    manyToOne:
         badge: 
             targetEntity: Model\Badge
+            inversedBy: badge_assertion
             joinColumn:
                 name: badge_id
                 referencedColumnName: id
         recipient:
             targetEntity: Model\Recipient
+            inversedBy: badge_assertion
             joinColumn:
                 name: recipient_id
+                referencedColumnName: id
+        issued_by:
+            targetEntity: Model\User
+            joinColumn:
+                name: issued_by
                 referencedColumnName: id

@@ -50,11 +50,28 @@ class Badge
     private $criteria;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+     */
+    private $created;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="Model\BadgeAssertion", mappedBy="badge_assertion")
+     * @ORM\OneToMany(targetEntity="Model\BadgeAssertion", mappedBy="badge")
      */
     private $badge_assertion;
+
+    /**
+     * @var \Model\User
+     *
+     * @ORM\ManyToOne(targetEntity="Model\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="created_by", referencedColumnName="id")
+     * })
+     */
+    private $created_by;
 
     /**
      * Constructor
@@ -167,6 +184,29 @@ class Badge
     }
 
     /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Badge
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
      * Add badge_assertion
      *
      * @param \Model\BadgeAssertion $badgeAssertion
@@ -197,5 +237,28 @@ class Badge
     public function getBadgeAssertion()
     {
         return $this->badge_assertion;
+    }
+
+    /**
+     * Set created_by
+     *
+     * @param \Model\User $createdBy
+     * @return Badge
+     */
+    public function setCreatedBy(\Model\User $createdBy = null)
+    {
+        $this->created_by = $createdBy;
+    
+        return $this;
+    }
+
+    /**
+     * Get created_by
+     *
+     * @return \Model\User 
+     */
+    public function getCreatedBy()
+    {
+        return $this->created_by;
     }
 }

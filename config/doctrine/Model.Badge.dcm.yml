@@ -20,7 +20,16 @@ Model\Badge:
             nullable: true
         criteria:
             type: text
+        created:
+            type: datetime
+            columnDefinition: TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     oneToMany:
         badge_assertion:
             targetEntity: Model\BadgeAssertion
-            mappedBy: badge_assertion
+            mappedBy: badge
+    manyToOne:
+        created_by:
+            targetEntity: Model\User
+            joinColumn:
+                name: created_by
+                referencedColumnName: id

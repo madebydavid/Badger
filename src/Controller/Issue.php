@@ -17,7 +17,7 @@ namespace Controller {
             
             return $controller;
         }
-
+        
         public function index(Application $app, $id) {
             
             $badgeAssertion = $this->getBadgeAssertion($app, $id);

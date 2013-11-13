@@ -1,0 +1,8 @@
+{% extends "common/base.twig" %}
+{% block logout %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <ul class="nav pull-right">
+            <li><a href="{{ path('login_logout') }}">Logout</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
