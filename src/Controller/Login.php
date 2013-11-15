@@ -13,7 +13,7 @@ namespace Controller {
             $controller = $app['controllers_factory'];
             
             $controller->get('/', array($this, 'index'))->bind('login');
-            $controller->post('/check', array($this, 'check'))->bind('loginCheck');
+            $controller->get('/check', array($this, 'check'))->bind('loginCheck');
             $controller->post('/', array($this, 'login'));
             
             return $controller;
