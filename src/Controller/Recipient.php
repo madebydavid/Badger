@@ -36,6 +36,8 @@ namespace Controller {
             
             if ($form->isValid()) {
                 
+                $recipient->setCreatedBy($app['security']->getToken()->getUser());
+                
                 $app['orm.em']->persist($recipient);
                 $app['orm.em']->flush();
                 

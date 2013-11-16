@@ -23,7 +23,7 @@
     ],
     "require": {
         "jquery/jquery": "1.7.2",
-        "silex/silex": "1.*",
+        "silex/silex": "~1.1",
         "twitter/bootstrap": "2.3.*",
         "silex/web-profiler": "~1.0",
         "twig/twig": ">=1.8,<2.0-dev",
@@ -31,7 +31,7 @@
         "doctrine/dbal": "2.3.4",
         "dflydev/doctrine-orm-service-provider": "1.0.*@dev",
         "dominikzogg/doctrine-orm-manager-registry-provider": "~1.1",
-        "symfony/symfony": "2.3.*"
+        "symfony/symfony": "2.4.*"
     },
     "autoload":    {
         "psr-0": {

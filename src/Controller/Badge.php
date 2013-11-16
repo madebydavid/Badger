@@ -49,6 +49,8 @@ namespace Controller {
                             
                 }
                 
+                $badge->setCreatedBy($app['security']->getToken()->getUser());
+                
                 $app['orm.em']->persist($badge);
                 $app['orm.em']->flush();
                 

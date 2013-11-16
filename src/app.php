@@ -50,21 +50,20 @@ $app->register(new Silex\Provider\SessionServiceProvider());
 
 $app['security.firewalls'] = array(
     'admin' => array(
-            'pattern' => '^((?!/login/?$).)*$',
-            'http' => true,
-            'form' => array('login_path' => '/login', 'check_path' => '/login/check'),
-            'logout' => array('logout_path' => '/login/logout'),
-            'users' =>  $app->share(function () use ($app) {
-                return new Symfony\Bridge\Doctrine\Security\User\EntityUserProvider(
-                        $app['doctrine'],
-                        '\Model\User',
-                        'username'
-                );
-            })
+        'pattern' => '^((?!/login/?$|/issue/\d+/?$).)*$',
+        'http' => true,
+        'form' => array('login_path' => '/login', 'check_path' => '/login/check'),
+        'logout' => array('logout_path' => '/login/logout'),
+        'users' =>  $app->share(function () use ($app) {
+            return new Symfony\Bridge\Doctrine\Security\User\EntityUserProvider(
+                    $app['doctrine'],
+                    '\Model\User',
+                    'username'
+            );
+        })
     )
 );
 
-//  'pattern' => '^((?!/login).)*$',
 $app->register(new Silex\Provider\SecurityServiceProvider(array()));
 
 $app['security.encoder_factory'] = $app->share(function ($app) {

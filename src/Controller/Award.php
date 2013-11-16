@@ -39,6 +39,7 @@ namespace Controller {
                     $assertion = new \Model\BadgeAssertion();
                     $assertion->setRecipient($award['recipient']);
                     $assertion->setBadge($award['badge']);
+                    $assertion->setIssuedBy($app['security']->getToken()->getUser());
                     $app['orm.em']->persist($assertion);
                     
                 }
